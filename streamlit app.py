@@ -22,7 +22,8 @@ def load_data():
         df_results = pd.read_excel(excel_file, sheet_name="CES4.0FINAL_results", engine='openpyxl')
         
         # Load the "Demographic Profile" sheet
-        df_demo = pd.read_excel(excel_file, sheet_name="Demographic Profile", engine='openpyxl')
+        # FIXED: Added header=1 because the first row in this sheet is a description, not headers
+        df_demo = pd.read_excel(excel_file, sheet_name="Demographic Profile", engine='openpyxl', header=1)
     except Exception as e:
         st.error(f"Error loading Excel file: {e}")
         st.stop()
